@@ -1,12 +1,17 @@
 #!/bin/sh
 echo "Deploying"
-if [ -n "$INPUT_PASSWORD" ]
-then
- export CONVOX_PASSWORD=$INPUT_PASSWORD
+
+if [ -n "$INPUT_PATH" ]; then
+	cd "$INPUT_PATH" || exit 1
 fi
-if [ -n "$INPUT_HOST" ]
-then
- export CONVOX_HOST=$INPUT_HOST
+
+if [ -n "$INPUT_PASSWORD" ]; then
+	export CONVOX_PASSWORD="$INPUT_PASSWORD"
 fi
-export CONVOX_RACK=$INPUT_RACK
-convox deploy --app $INPUT_APP --description "$INPUT_DESCRIPTION" --wait
+
+if [ -n "$INPUT_HOST" ]; then
+	export CONVOX_HOST="$INPUT_HOST"
+fi
+
+export CONVOX_RACK="$INPUT_RACK"
+convox deploy --app "$INPUT_APP" --description "$INPUT_DESCRIPTION" --wait

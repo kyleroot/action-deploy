@@ -21,6 +21,9 @@ inputs:
   description:
     description: Convox build description
     required: false
+  path:
+    description: Path where Convox build and deploy should occur
+    required: false
 runs:
   using: docker
   image: Dockerfile
