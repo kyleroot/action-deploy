@@ -21,6 +21,9 @@ inputs:
   description:
     description: Convox build description
     required: false
+  manifest:
+    description: Convox manifest filename
+    required: false
 runs:
   using: docker
   image: Dockerfile
